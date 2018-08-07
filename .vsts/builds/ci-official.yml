@@ -3,7 +3,7 @@ trigger:
 - release/*
 
 phases:
-- template: ../blazor-build.yml
+- template: ../templates/blazor-build.yml
   parameters:
     variables:
       SignType: test
