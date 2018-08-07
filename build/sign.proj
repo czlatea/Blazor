@@ -12,8 +12,8 @@
     <CodeSignToolPath>$(RestorePackagesPath)roslyntools.signtool\$(SignToolVersion)\tools\SignTool.exe</CodeSignToolPath>
     
     <SignToolOptions Condition=" '$(VisualStudioMSBuildx86Path)' != '' " >-msbuildPath "$(VisualStudioMSBuildx86Path)"</SignToolOptions>
-    <SignToolOptions Condition=" '$(CI)' != 'true' ">$(SignToolOptions) -test</SignToolOptions>
-    <SignToolOptions Condition=" '$(TestSign)' == 'true' ">$(SignToolOptions) -testSign</SignToolOptions>
+    <SignToolOptions Condition=" '$(CI)' != 'true' OR '$(SkipCodeSign)' == 'true' ">$(SignToolOptions) -test</SignToolOptions>
+    <SignToolOptions Condition=" '$(SignType)' == 'test' ">$(SignToolOptions) -testSign</SignToolOptions>
     <SignToolOptions>$(SignToolOptions) -nugetPackagesPath $(RestorePackagesPath)</SignToolOptions>
     <SignToolOptions>$(SignToolOptions) -config "$(MSBuildThisFileDirectory)SignToolData.json"</SignToolOptions>
     <SignToolOptions>$(SignToolOptions) $(ArtifactsConfigurationDir)</SignToolOptions>
