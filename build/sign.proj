@@ -9,8 +9,9 @@
     <RestorePackagesPath>$(MSBuildThisFileDirectory)..\artifacts\obj\tools\</RestorePackagesPath>
     <SignToolVersion>1.0.0-beta2-63206-01</SignToolVersion>
     <CodeSignToolPath>$(RestorePackagesPath)roslyntools.signtool\$(SignToolVersion)\tools\SignTool.exe</CodeSignToolPath>
-    <SignToolOptions></SignToolOptions>
-    <SignToolOptions Condition="'$(CI)' != 'true'">-test $(SignToolOptions)</SignToolOptions>
+    <SignToolOptions Condition=" '$(VisualStudioMSBuildx86Path)' != '' " >-msbuildPath "$(VisualStudioMSBuildx86Path)"</SignToolOptions>
+    <SignToolOptions Condition=" '$(CI)' != 'true' ">$(SignToolOptions) -test</SignToolOptions>
+    <SignToolOptions Condition=" '$(TestSign)' == 'true' ">$(SignToolOptions) -testSign</SignToolOptions>
   </PropertyGroup>
 
   <ItemGroup>
