@@ -60,6 +60,7 @@
         /v:M;
         /fl;
         &quot;/flp:LogFile=$(VSIXLogFilePath)&quot;;
+        /p:BuildProjectReferences=false;
         /p:DeployExtension=false;
         &quot;/p:SymbolsPublishDir=$(BuildDir)&quot;;
         &quot;/p:Configuration=$(Configuration)&quot;;" />
