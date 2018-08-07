@@ -13,6 +13,7 @@ phases:
       displayName: Install MicroBuild signing plugin
       inputs:
         signType: $(SignType)
+        esrpSigning: true
       condition: and(succeeded(), in(variables['SignType'], 'test', 'real'))
 
     afterBuild:
