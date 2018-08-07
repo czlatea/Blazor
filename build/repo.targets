@@ -7,7 +7,9 @@
     </Solutions>
   </ItemGroup>
 
-  <Target Name="CodeSign" AfterTargets="Package">
-    <MSBuild Projects="$(MSBuildThisFileDirectory)sign.proj" Targets="Restore;CodeSign" />
+  <Target Name="CodeSign" AfterTargets="Package" DependsOnTargets="GetToolsets">
+    <MSBuild Projects="$(MSBuildThisFileDirectory)sign.proj"
+             Targets="Restore;CodeSign"
+             Properties="MSBuildPath=$(VisualStudioMSBuildx86Path)" />
   </Target>
 </Project>
