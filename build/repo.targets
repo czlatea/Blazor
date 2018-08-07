@@ -10,6 +10,6 @@
   <Target Name="CodeSign" AfterTargets="Package" DependsOnTargets="GetToolsets">
     <MSBuild Projects="$(MSBuildThisFileDirectory)sign.proj"
              Targets="Restore;CodeSign"
-             Properties="MSBuildPath=$(VisualStudioMSBuildx86Path)" />
+             Properties="VisualStudioMSBuildx86Path=$(VisualStudioMSBuildx86Path)" />
   </Target>
 </Project>
