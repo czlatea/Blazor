@@ -1,0 +1,6 @@
+trigger:
+- master
+- release/*
+
+phases:
+- template: ../blazor-build.yml

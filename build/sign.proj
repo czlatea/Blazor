@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    See https://github.com/dotnet/roslyn-tools/tree/master/src/SignTool for docs on using the sign tool.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)..\artifacts\obj\tools\</RestorePackagesPath>
+    <SignToolVersion>1.0.0-beta2-63206-01</SignToolVersion>
+    <CodeSignToolPath>$(RestorePackagesPath)roslyntools.signtool\$(SignToolVersion)\tools\SignTool.exe</CodeSignToolPath>
+    <SignToolOptions></SignToolOptions>
+    <SignToolOptions Condition="'$(CI)' != 'true'">-test $(SignToolOptions)</SignToolOptions>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RoslynTools.SignTool" Version="$(SignToolVersion)" />
+  </ItemGroup>
+
+  <Target Name="CodeSign">
+    <Exec Command="&quot;$(CodeSignToolPath)&quot; $(SignToolOptions) -config &quot;$(MSBuildThisFileDirectory)SignToolData.json&quot; $(ArtifactsConfigurationDir)" />
+  </Target>
+
+</Project>
